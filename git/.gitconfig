@@ -1,3 +1,5 @@
 [user]
-email = christian.hernvall@gmail.com
-name = Christian Hernvall
+	email = christian.hernvall@svt.se
+	name = Christian Hernvall
+[color "diff"]
+  whitespace = "red reverse"

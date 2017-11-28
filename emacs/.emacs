@@ -20,6 +20,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
+;; Always newline on save
+(setq require-final-newline t)
+
 ;; Deletion mode
 (delete-selection-mode 1)
 

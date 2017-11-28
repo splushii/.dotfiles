@@ -1,1 +1,2 @@
-alias e='emacsclient -t'
+alias e="$EDITOR"
+alias l='_ls -a'
