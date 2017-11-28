@@ -1,60 +1,78 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; File name: ` ~/.emacs '
-;;; ---------------------
-;;;
-;;; If you need your own personal ~/.emacs
-;;; please make a copy of this file
-;;; an placein your changes and/or extension.
-;;;
-;;; Copyright (c) 1997-2002 SuSE Gmbh Nuernberg, Germany.
-;;;
-;;; Author: Werner Fink, <feedback@suse.de> 1997,98,99,2002
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;
-;;; Test of Emacs derivates
-;;; -----------------------
+(setq-local indent 2)
+(setq column-number-mode t)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width indent)
+(setq js-indent-level indent)
+(setq python-indent-offset indent)
+(setq c-basic-offset indent)
+(setq cperl-indent-level indent)
+(setq css-indent-offset indent)
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
+(add-hook 'groovy-mode-hook(lambda()
+                             (c-set-offset 'label 2)))
 
-(if (string-match "XEmacs\\|Lucid" emacs-version)
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;;; XEmacs
-  ;;; ------
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (progn
-     (if (file-readable-p "~/.xemacs/init.el")
-        (load "~/.xemacs/init.el" nil t))
-  )
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;;; GNU-Emacs
-  ;;; ---------
-  ;;; load ~/.gnu-emacs or, if not exists /etc/skel/.gnu-emacs
-  ;;; For a description and the settings see /etc/skel/.gnu-emacs
-  ;;;   ... for your private ~/.gnu-emacs your are on your one.
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (if (file-readable-p "~/.gnu-emacs")
-      (load "~/.gnu-emacs" nil t)
-    (if (file-readable-p "/etc/skel/.gnu-emacs")
-	(load "/etc/skel/.gnu-emacs" nil t)))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+;; Handlebars.js
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . html-mode))
 
-  ;; Custom Settings
-  ;; ===============
-  ;; To avoid any trouble with the customization system of GNU emacs
-  ;; we set the default file ~/.gnu-emacs-custom
-  (setq custom-file "~/.gnu-emacs-custom")
-  (load "~/.gnu-emacs-custom" t t)
-;;;
-)
-;;;
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;; ido mode
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
 
-(require 'multiple-cursors)
-(global-set-key (kbd "C-c C-c") 'mc/edit-lines)
+;; Deletion mode
+(delete-selection-mode 1)
+
+;; 80 col marker
+(setq-default
+ whitespace-line-column 80
+ whitespace-style '(face lines-tail))
+(add-hook 'prog-mode-hook #'whitespace-mode)
+
+;; Backup files settings
+(setq
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ '(("." . "~/.saves"))    ; don't litter my fs tree
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+    version-control t)       ; use versioned backups
+
+;; Key bindings
+(global-set-key (kbd "C-c C-b") 'magit-blame)
+(global-set-key (kbd "C-c C-m") 'magit-status)
+(global-set-key (kbd "C-c C-r") 'rgrep)
 (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-c C-_") 'mc/mark-all-like-this)
+
+;; Melpa
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" .
+	       "https://melpa.org/packages/"))
+(package-initialize)
+
+;; Show trailing whitespace
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+ '(custom-enabled-themes (quote (wombat)))
+ '(delete-selection-mode nil)
+ '(package-selected-packages
+   (quote
+    (fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+ '(show-trailing-whitespace t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(region ((t (:background "brightblack")))))
