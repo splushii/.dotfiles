@@ -158,9 +158,9 @@ exec --no-startup-id nm-applet
 exec --no-startup-id emacs --daemon || true
 
 # Touchpad settings
-synclient HorizScrollDelta=-94
-synclient HorizTwoFingerScroll=1
-synclient VertScrollDelta=-94
+exec --no-startup-id synclient HorizScrollDelta=-94
+exec --no-startup-id synclient HorizTwoFingerScroll=1
+exec --no-startup-id synclient VertScrollDelta=-94
 
 # Background
 exec --no-startup-id feh --bg-fill /home/splushii/Downloads/kermit.jpg
