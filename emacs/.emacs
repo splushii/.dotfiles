@@ -32,6 +32,18 @@
  whitespace-style '(face lines-tail))
 (add-hook 'prog-mode-hook #'whitespace-mode)
 
+;; Transpose lines
+(defun move-line-up ()
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2))
+
+(defun move-line-down ()
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1))
+
 ;; Backup files settings
 (setq
  backup-by-copying t      ; don't clobber symlinks
@@ -43,6 +55,8 @@
     version-control t)       ; use versioned backups
 
 ;; Key bindings
+(global-set-key (kbd "M-p") 'move-line-up)
+(global-set-key (kbd "M-n") 'move-line-down)
 (global-set-key (kbd "C-c C-b") 'magit-blame)
 (global-set-key (kbd "C-c C-m") 'magit-status)
 (global-set-key (kbd "C-c C-r") 'rgrep)
