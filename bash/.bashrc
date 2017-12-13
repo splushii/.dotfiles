@@ -12,10 +12,6 @@ if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
     source /usr/bin/virtualenvwrapper.sh
 fi
 
-# ssh-add
-export SSH_ASKPASS=/usr/lib/ssh/ksshaskpass
-/usr/bin/ssh-add </dev/null 2>/dev/null
-
 # Disable terminal suspend/resume
 stty -ixon
 
