@@ -1,5 +1,5 @@
 alias e="$EDITOR"
 alias E='sudo -e'
 alias ls='ls --color=auto'
-alias la='ls -a'
+alias la='ls -A'
 alias ll='ls -lah'

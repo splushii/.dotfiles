@@ -5,6 +5,7 @@
 
 # editor
 export EDITOR='emacsclient -t'
+export PATH="$PATH:~/bin"
 
 # virtualenvwrapper
 if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
