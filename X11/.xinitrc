@@ -18,13 +18,6 @@ if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi
 
-# Set up keyboard mappings
-setxkbmap -layout us,se \
-          -variant altgr-intl, \
-          -option \
-          -option grp:lwin_switch \
-          -option grp_led:caps \
-          -option caps:none
 
 if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
