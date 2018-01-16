@@ -20,6 +20,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
+;; disable menu-bar
+(setq menu-bar-mode nil)
+
 ;; Always newline on save
 (setq require-final-newline t)
 
