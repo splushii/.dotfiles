@@ -85,7 +85,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+    (pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
