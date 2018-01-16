@@ -66,6 +66,8 @@
 (global-set-key (kbd "C-c .") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c ,") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-_") 'mc/mark-all-like-this)
+;; Override buffer-menu-other-window with ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Melpa
 (require 'package)
