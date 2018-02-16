@@ -161,9 +161,6 @@ bar {
 # Network daemon
 exec --no-startup-id nm-applet
 
-# Emacs daemon
-exec --no-startup-id emacs --daemon || true
-
 # Background
 exec --no-startup-id feh --bg-fill /home/splushii/Downloads/kermit.jpg
 

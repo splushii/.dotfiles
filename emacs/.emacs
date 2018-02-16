@@ -3,10 +3,11 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width indent)
 (setq js-indent-level indent)
-(setq python-indent-offset indent)
+(setq python-indent-offset 4)
 (setq c-basic-offset indent)
 (setq cperl-indent-level indent)
 (setq css-indent-offset indent)
+(setq vcl-indent-level indent)
 
 (add-hook 'groovy-mode-hook(lambda()
                              (c-set-offset 'label 2)))
@@ -90,7 +91,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+    (vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

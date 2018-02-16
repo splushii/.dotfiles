@@ -3,9 +3,10 @@
 # read ~/.bashrc; in our setup, /etc/profile sources ~/.bashrc - thus all
 # settings made here will also take effect in a login shell.
 
-# editor
+# env
 export EDITOR='emacsclient -t'
 export PATH="$PATH:~/bin"
+export LANG="en_US.UTF-8"
 
 # virtualenvwrapper
 if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
@@ -17,3 +18,5 @@ fi
 stty -ixon
 
 test -s ~/.alias && . ~/.alias || true
+
+[[ -f ~/.workrc ]] && . ~/.workrc
