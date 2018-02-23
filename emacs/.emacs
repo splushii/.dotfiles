@@ -15,6 +15,7 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 ;; Handlebars.js
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.vcl\\'" . vcl-mode))
 
 ;; ido mode
 (ido-mode 1)
