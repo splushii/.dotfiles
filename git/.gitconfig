@@ -1,5 +1,3 @@
-[user]
-	email = christian.hernvall@svt.se
-	name = Christian Hernvall
+# User email and name set in .bashrc
 [color "diff"]
   whitespace = "red reverse"
