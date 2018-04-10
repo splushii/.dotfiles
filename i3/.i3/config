@@ -158,6 +158,7 @@ bar {
 }
 
 ### Autostart
+exec --no-startup-id nm-applet
 
 # Background
 exec --no-startup-id feh --bg-fill /home/splushii/Downloads/kermit.jpg
