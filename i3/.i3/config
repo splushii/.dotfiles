@@ -110,6 +110,12 @@ bindsym $mod+$mod2+8 move container to workspace 8
 bindsym $mod+$mod2+9 move container to workspace 9
 bindsym $mod+$mod2+0 move container to workspace 10
 
+# move focused workspace
+bindsym $mod+$mod2+Up move workspace to output up
+bindsym $mod+$mod2+Down move workspace to output down
+bindsym $mod+$mod2+Right move workspace to output right
+bindsym $mod+$mod2+Left move workspace to output left
+
 # reload the configuration file
 bindsym $mod+$mod2+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
