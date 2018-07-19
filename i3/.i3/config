@@ -143,6 +143,9 @@ bindsym $mod+Ctrl+k resize grow height 1 px or 1 ppt
 bindsym $mod+Ctrl+l resize shrink height 1 px or 1 ppt
 bindsym $mod+Ctrl+semicolon resize grow width 1 px or 1 ppt
 
+# pass
+bindsym $mod+p exec --no-startup-id passmenu
+
 # Suspend
 bindsym $mod+$mod2+s exec "~/bin/lock.sh && systemctl suspend"
 
