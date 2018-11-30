@@ -14,6 +14,14 @@ export GIT_AUTHOR_NAME='Christian Hernvall'
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 
+# Prompt
+. /usr/share/git/completion/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=y
+export GIT_PS1_SHOWSTASHSTATE=y
+export GIT_PS1_SHOWUNTRACKEDFILES=y
+export GIT_PS1_SHOWUPSTREAM=auto
+export PS1='[\u@\h \W$(__git_ps1 "(%s)" | sed "s/ //g")]$ '
+
 # virtualenvwrapper
 if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
     export WORKON_HOME=~/envs
