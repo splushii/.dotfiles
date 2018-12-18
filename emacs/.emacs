@@ -31,6 +31,12 @@
 ;; Deletion mode
 (delete-selection-mode 1)
 
+;; Clipboard stuff
+;; (setq x-select-enable-clipboard t)
+;; (setq x-select-enable-primary t)
+;; (setq select-enable-clipboard t)
+;; (setq select-enable-primary t)
+
 ;; 80 col marker
 (setq-default
  whitespace-line-column 80
@@ -92,7 +98,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+    (kotlin-mode xclip vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
