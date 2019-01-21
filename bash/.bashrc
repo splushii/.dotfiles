@@ -40,6 +40,11 @@ __set_bash_prompt()
 
     local PreGitPS1="[\u@\h $BBlu\W$None"
     local PostGitPS1+=']'
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PostGitPS1+="$Yel("
+        PostGitPS1+=$(basename $VIRTUAL_ENV)
+        PostGitPS1+=")$None"
+    fi
     if [[ $exit != 0 ]]; then
         PostGitPS1+="$Red[$exit]$None"
     fi
