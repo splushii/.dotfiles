@@ -3,3 +3,6 @@
   whitespace = "red reverse"
 [commit]
   gpgsign = true
+[user]
+  name = Christian Hernvall
+  email = christian.hernvall@gmail.com
