@@ -70,4 +70,7 @@ stty -ixon
 
 test -s ~/.alias && . ~/.alias || true
 
+source <(kubectl completion bash)
+source <(helm completion bash)
+
 [[ -f ~/.workrc ]] && . ~/.workrc || true
