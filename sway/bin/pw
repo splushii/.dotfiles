@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Usage: pw pass/path/to/password"
+    exit 1
+fi
+echo "pass $1 in clipboard once."
+pass $1 | wl-copy --paste-once
