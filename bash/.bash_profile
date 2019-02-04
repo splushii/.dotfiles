@@ -3,8 +3,9 @@
 
 # Seamless security
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
-eval $(/usr/bin/gpg-agent --daemon)
+eval $(/usr/bin/gpg-agent --daemon --enable-ssh-support)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+echo UPDATESTARTUPTTY | gpg-connect-agent
 
 # Emacs daemon
 emacs --daemon || true
