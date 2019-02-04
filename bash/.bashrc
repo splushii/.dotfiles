@@ -14,6 +14,10 @@ export GIT_AUTHOR_NAME='Christian Hernvall'
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 
+# completion
+. /usr/share/bash-completion/completions/pass
+complete -o filenames -F _pass pw
+
 # prompt
 . /usr/share/git/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=y
