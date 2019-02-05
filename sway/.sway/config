@@ -21,9 +21,12 @@ bindsym $mod+$mod2+Return exec termite -d $(~/bin/sway_focused_cwd.sh)
 # kill focused window
 bindsym $mod+$mod2+q kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
+# Homebrew launchers
+for_window [app_id="^homebrewlauncher$"] floating enable
+# exec commands
+bindsym $mod+d exec termite --name=homebrewlauncher -e "bash -c 'fzf_cmd.sh'"
+# put pass to clipboard
+bindsym $mod+p exec termite --name=homebrewlauncher -e "bash -c 'fzf_pw.sh'"
 
 # change focus
 bindsym $mod+j focus left
@@ -141,6 +144,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 bar {
+    colors {
+        statusline #aaaaaa
+    }
     position	   bottom
     separator_symbol " | "
     status_command i3status --config ~/.sway/i3status.conf
