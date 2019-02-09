@@ -11,9 +11,9 @@ echo UPDATESTARTUPTTY | gpg-connect-agent
 emacs --daemon || true
 
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
-    if [ "$XDG_VTNR" -eq 1 ]; then
+    if [ "$XDG_VTNR" -eq 2 ]; then
         exec startx
-    elif [ "$XDG_VTNR" -eq 2 ]; then
+    elif [ "$XDG_VTNR" -eq 1 ]; then
         # Set wayland stuff
         export GDK_BACKEND=wayland
         export CLUTTER_BACKEND=wayland
