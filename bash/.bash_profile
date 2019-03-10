@@ -9,6 +9,9 @@ echo UPDATESTARTUPTTY | gpg-connect-agent
 
 # Emacs daemon
 emacs --daemon || true
+# Soundz
+pulseaudio --kill
+pulseaudio --start
 
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
     if [ "$XDG_VTNR" -eq 2 ]; then
@@ -21,7 +24,6 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
         export QT_WAYLAND_FORCE_DPI=physical
         export SDL_VIDEODRIVER=wayland
         export _JAVA_AWT_WM_NONREPARENTING=1
-        pulseaudio --start
         exec sway
     fi
 fi
