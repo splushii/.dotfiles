@@ -7,6 +7,7 @@
 export EDITOR='emacsclient -t'
 export PATH="$PATH:~/bin"
 export LANG='en_US.UTF-8'
+export GPG_TTY=$(tty)
 
 # git
 export GIT_AUTHOR_EMAIL='christian.hernvall@gmail.com'
