@@ -4,4 +4,5 @@ PW=$(find . -name '*.gpg' | sed -r 's|\./(.*)\.gpg|\1|' | fzf --prompt='pw > ')
 if [ -z "$PW" ]; then
     exit 0
 fi
-nohup bash -c "pw $PW"
+pw $PW
+# nohup bash -c "pw $PW"
