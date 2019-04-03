@@ -4,7 +4,7 @@
 clickable_url = false
 #dynamic_title = true
 #font = Monospace 9
-font = Roboto Mono 10
+font = Dejavu Sans Mono 10
 #fullscreen = true
 #geometry = 640x480
 #icon_name = terminal
