@@ -2,9 +2,9 @@
 [[ -f ~/.work_profile ]] && . ~/.work_profile
 
 # Seamless security
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 eval $(/usr/bin/gpg-agent --daemon --enable-ssh-support)
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GPG_TTY=$(tty)
 echo UPDATESTARTUPTTY | gpg-connect-agent
 
 # Emacs daemon
