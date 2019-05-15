@@ -74,3 +74,6 @@ source <(kubectl completion bash)
 source <(helm completion bash)
 
 [[ -f ~/.workrc ]] && . ~/.workrc || true
+
+# added by travis gem
+[ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh
