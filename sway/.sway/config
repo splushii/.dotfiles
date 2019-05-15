@@ -110,14 +110,13 @@ bindsym $mod+$mod2+r restart
 bindsym $mod+$mod2+o exit
 
 mode "resize" {
-        bindsym j resize shrink width 1 px or 1 ppt
-        bindsym k resize grow height 1 px or 1 ppt
-        bindsym l resize shrink height 1 px or 1 ppt
-        bindsym semicolon resize grow width 1 px or 1 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+  bindsym j resize shrink width 1 px or 1 ppt
+  bindsym k resize grow height 1 px or 1 ppt
+  bindsym l resize shrink height 1 px or 1 ppt
+  bindsym semicolon resize grow width 1 px or 1 ppt
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
@@ -148,19 +147,19 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 bar {
-    colors {
-        statusline #aaaaaa
-    }
-    position	   bottom
-    separator_symbol " | "
-    status_command i3status --config ~/.sway/i3status.conf
+ colors {
+   statusline #aaaaaa
+ }
+ position	   bottom
+ separator_symbol " | "
+ status_command i3status --config ~/.sway/i3status.conf
 }
 
 ### Input
 input * {
   dwt enabled
   tap enabled
-  natural_scroll enabled
+  # natural_scroll enabled
   middle_emulation enabled
   scroll_method two_finger
   xkb_layout us,se
@@ -168,4 +167,4 @@ input * {
 }
 
 ### Output
-output eDP-1 scale 3
+output eDP-1 scale 2
