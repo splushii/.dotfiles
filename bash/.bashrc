@@ -68,12 +68,12 @@ fi
 # Disable terminal suspend/resume
 stty -ixon
 
-test -s ~/.alias && . ~/.alias || true
+test -s ~/.alias && . ~/.alias ||:
 
-source <(kubectl completion bash)
-source <(helm completion bash)
-
-[[ -f ~/.workrc ]] && . ~/.workrc || true
-
+# Completion
+hash kubectl 2>/dev/null && source <(kubectl completion bash) ||:
+hash helm  2>/dev/null && source <(helm completion bash) ||:
 # added by travis gem
-[ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh
+[ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh ||:
+
+[[ -f ~/.workrc ]] && . ~/.workrc ||:
