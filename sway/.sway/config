@@ -6,7 +6,7 @@ set $mod2 Alt
 font pango:DejaVu Sans Mono 8
 
 # Hide title bars
-new_window pixel
+default_border pixel
 
 # Do not kick the mouse
 mouse_warping none
