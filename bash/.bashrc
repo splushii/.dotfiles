@@ -28,7 +28,7 @@ export GIT_PS1_SHOWUPSTREAM=auto
 export GIT_PS1_STATESEPARATOR=
 export GIT_PS1_SHOWCOLORHINTS=1
 
-__set_bash_prompt()
+function __set_bash_prompt()
 {
     local exit="$?" # Save the exit status of the last command
 
@@ -57,7 +57,22 @@ __set_bash_prompt()
 
     __git_ps1 "$PreGitPS1" "$PostGitPS1" '(%s)'
 }
-PROMPT_COMMAND=__set_bash_prompt
+function __pre_command()
+{
+    if [[ "$BASH_COMMAND" != "__post_command" ]]; then
+        __set_title "$PWD $BASH_COMMAND"
+    fi
+}
+function __set_title()
+{
+    echo -ne "\e]0;"; echo -n "$TERM bash - $@"; echo -ne "\a"
+}
+function __post_command()
+{
+    __set_bash_prompt
+    __set_title "$PWD"
+}
+PROMPT_COMMAND=__post_command
 
 # virtualenvwrapper
 if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
@@ -77,3 +92,6 @@ hash helm  2>/dev/null && source <(helm completion bash) ||:
 [ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh ||:
 
 [[ -f ~/.workrc ]] && . ~/.workrc ||:
+
+# Put this last to avoid spam from initialization above
+trap __pre_command DEBUG
