@@ -2,11 +2,10 @@
     // Bar
     "layer": "top",
     "position": "bottom",
-    "height": 21,
+    "height": 24,
 
     // Module order
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-right": ["pulseaudio", "network", "backlight", "battery", "clock"],
 
     // Module configuration
@@ -15,6 +14,8 @@
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
     },
     "clock": {
         "format": "{:%Y-%m-%d %H:%M:%S}",
@@ -30,7 +31,7 @@
     //     "tooltip": false
     // },
     "backlight": {
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", ""]
     },
     "battery": {
@@ -39,25 +40,25 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon} {time}",
-        "format-charging": "{capacity}%  {time}",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        "format": "{icon} {capacity}% {time}",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}% {time}",
+        "format-plugged": " {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "tooltip": false
     },
     "network": {
-        "format-wifi": "{ifname}: {ipaddr}/{cidr} @ {essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "format-wifi": " {ifname}: {ipaddr}/{cidr} @ {essid} ({signalStrength}%)",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-linked": " {ifname} (No IP)",
+        "format-disconnected": "⚠ Disconnected",
         "tooltip": false
     },
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-muted": "{volume}%  {format_source}",
-        "format-source": "{volume}% ",
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-muted": " {volume}% {format_source}",
+        "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {
             "headphones": "",
