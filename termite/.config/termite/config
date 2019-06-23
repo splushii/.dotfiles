@@ -53,7 +53,7 @@ hyperlinks = false
 #background = rgba(63, 63, 63, 0.8)
 
 # If unset, will reverse foreground and background
-highlight = #2f2f2f
+# highlight = #2f2f2f
 
 [colors]
 # base16 default theme
