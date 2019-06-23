@@ -5,4 +5,3 @@ if [ -z "$PW" ]; then
     exit 0
 fi
 pw $PW
-# nohup bash -c "pw $PW"

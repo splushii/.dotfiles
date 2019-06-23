@@ -3,5 +3,7 @@ if [ -z "$1" ]; then
     echo "Usage: pw pass/path/to/password"
     exit 1
 fi
+echo "Trying to get password..."
+PASSWORD=$(pass $1)
 echo "pass $1 in clipboard once."
-pass $1 | wl-copy --paste-once -f
+echo "${PASSWORD}" | wl-copy --paste-once -f
