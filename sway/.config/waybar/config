@@ -6,7 +6,7 @@
 
     // Module order
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-right": ["pulseaudio", "network", "backlight", "battery", "clock"],
+    "modules-right": ["pulseaudio", "backlight","network",  "battery", "clock"],
 
     // Module configuration
     "sway/workspaces": {
@@ -32,7 +32,7 @@
     // },
     "backlight": {
         "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
+        "format-icons": [""]
     },
     "battery": {
         "states": {
@@ -51,7 +51,7 @@
         "format-wifi": " {ifname}: {ipaddr}/{cidr} @ {essid} ({signalStrength}%)",
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
         "format-linked": " {ifname} (No IP)",
-        "format-disconnected": "⚠ Disconnected",
+        "format-disconnected": "⚠ No connection",
         "tooltip": false
     },
     "pulseaudio": {
