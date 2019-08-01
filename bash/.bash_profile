@@ -9,9 +9,6 @@ echo UPDATESTARTUPTTY | gpg-connect-agent
 
 # Emacs daemon
 emacs --daemon || true
-# Soundz
-pulseaudio --kill
-pulseaudio --start
 
 if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
     if [ "$XDG_VTNR" -eq 2 ]; then
