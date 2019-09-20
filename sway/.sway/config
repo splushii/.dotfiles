@@ -163,3 +163,6 @@ input * {
 
 ### Output
 output eDP-1 scale 2
+
+### Notification daemon
+exec mako 2>&1 >/tmp/mako.log
