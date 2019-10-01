@@ -10,7 +10,7 @@ export LANG='en_US.UTF-8'
 
 # gpg
 export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # git
 export GIT_AUTHOR_EMAIL='christian.hernvall@gmail.com'
