@@ -6,10 +6,11 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
         exec startx
     elif [ "$XDG_VTNR" -eq 1 ]; then
         # Set wayland stuff
-        export GDK_BACKEND=wayland
-        export CLUTTER_BACKEND=wayland
+        export XDG_SESSION_TYPE=wayland
+        export MOZ_ENABLE_WAYLAND=1
         export QT_QPA_PLATFORM=wayland-egl
         export QT_WAYLAND_FORCE_DPI=physical
+        export CLUTTER_BACKEND=wayland
         export SDL_VIDEODRIVER=wayland
         export _JAVA_AWT_WM_NONREPARENTING=1
         exec sway 2>&1 >> ${HOME}/.sway.log
