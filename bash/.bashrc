@@ -53,6 +53,11 @@ function __set_bash_prompt()
         PostGitPS1+=$(basename $VIRTUAL_ENV)
         PostGitPS1+=")$None"
     fi
+    if which kubectl >/dev/null; then
+        PostGitPS1+="$Blu("
+        PostGitPS1+="⎈$(kubectl config current-context)"
+        PostGitPS1+=")$None"
+    fi
     if [[ $exit != 0 ]]; then
         PostGitPS1+="$Red[$exit]$None"
     fi
