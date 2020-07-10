@@ -27,6 +27,8 @@ for_window [app_id="^homebrewlauncher$"] floating enable
 bindsym $mod+d exec termite --name=homebrewlauncher -e "bash -c 'fzf_cmd.sh'"
 # put pass to clipboard
 bindsym $mod+p exec termite --name=homebrewlauncher -e "bash -c 'fzf_pw.sh'"
+# put pass to (x)clipboard
+bindsym $mod+$mod2+p exec termite --name=homebrewlauncher -e "bash -c 'fzf_pw.sh X11'"
 
 # change focus
 bindsym $mod+j focus left
