@@ -114,7 +114,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (go-mode docker-tramp lxd-tramp kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+    (terraform-mode go-mode docker-tramp lxd-tramp kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
