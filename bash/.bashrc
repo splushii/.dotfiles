@@ -54,14 +54,27 @@ function __set_bash_prompt()
     local PreGitPS1="[\u@\h $BBlu\W$None"
     local PostGitPS1+=']'
     if [[ ! -z "$VIRTUAL_ENV" ]]; then
-        PostGitPS1+="$Yel("
+        PostGitPS1+="$Yel(ℙ "
         PostGitPS1+=$(basename $VIRTUAL_ENV)
         PostGitPS1+=")$None"
     fi
-    if which kubectl &>/dev/null && kubectl config current-context &>/dev/null; then
-        PostGitPS1+="$Blu("
-        PostGitPS1+="⎈$(kubectl config current-context)"
-        PostGitPS1+=")$None"
+    # if which kubectl &>/dev/null && kubectl config current-context &>/dev/null; then
+    if which kubectl &>/dev/null; then
+        local KUBE_CONTEXT=$(cat ~/.kube/config \
+                                 | grep current-context \
+                                 | sed -e 's/current-context: //' -e 's/"//g')
+        if [[ ! -z "$KUBE_CONTEXT" ]]; then
+            PostGitPS1+="$Blu("
+            # PostGitPS1+="⎈$(kubectl config current-context)"
+            PostGitPS1+="⎈${KUBE_CONTEXT}"
+            PostGitPS1+=")$None"
+        fi
+    fi
+    if which gcloud &>/dev/null; then
+        local GCLOUD_CONF=$(cat ~/.config/gcloud/active_config)
+        if [[ "$GCLOUD_CONF" != "dummy" ]]; then
+            PostGitPS1+="$Mag(𝔾 $GCLOUD_CONF)$None"
+        fi
     fi
     if [[ $exit != 0 ]]; then
         PostGitPS1+="$Red[$exit]$None"
