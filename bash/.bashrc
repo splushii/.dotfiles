@@ -18,6 +18,10 @@ export GIT_AUTHOR_NAME='Christian Hernvall'
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 
+# pass
+export PASSWORD_STORE_GENERATED_LENGTH=128
+export PASSWORD_STORE_CHARACTER_SET='[:alnum:]'
+
 # completion
 . /usr/share/bash-completion/completions/pass
 complete -o filenames -F _pass pw
