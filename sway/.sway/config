@@ -170,9 +170,5 @@ output eDP-1 scale 2
 ### Notification daemon
 exec mako 2>&1 >/tmp/mako.log
 
-# Seamless security
-exec eval $(/usr/bin/gpg-agent --daemon --enable-ssh-support)
-exec echo UPDATESTARTUPTTY | gpg-connect-agent
-
 # Emacs daemon
 exec emacs --daemon || true
