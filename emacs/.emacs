@@ -100,8 +100,8 @@
 ;; Melpa
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" .
-	       "https://melpa.org/packages/"))
+  '("melpa" .
+    "https://melpa.org/packages/"))
 (package-initialize)
 
 (custom-set-variables
@@ -113,11 +113,10 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (wombat)))
+ '(custom-enabled-themes '(wombat))
  '(delete-selection-mode nil)
  '(package-selected-packages
-   (quote
-    (terraform-mode go-mode docker-tramp lxd-tramp kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
+   '(## terraform-mode go-mode docker-tramp lxd-tramp kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
