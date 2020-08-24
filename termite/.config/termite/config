@@ -1,5 +1,6 @@
 [options]
-#allow_bold = true
+allow_bold = true
+bold_is_bright = false
 #audible_bell = false
 clickable_url = false
 #dynamic_title = true
@@ -56,13 +57,14 @@ hyperlinks = false
 # highlight = #2f2f2f
 
 [colors]
-# base16 default theme
+# base16 classic dark
 
 # special
-foreground      = #d0d0d0
-foreground_bold = #d0d0d0
-cursor          = #d0d0d0
-background      = #151515
+foreground        = #d0d0d0
+foreground_bold   = #d0d0d0
+cursor            = #d0d0d0
+cursor_foreground = #151515
+background        = #151515
 
 # black
 color0  = #151515
@@ -70,27 +72,27 @@ color8  = #505050
 
 # red
 color1  = #ac4142
-color9  = #ac4142
+color9  = #e2706d
 
 # green
 color2  = #90a959
-color10 = #90a959
+color10 = #c1db87
 
 # yellow
 color3  = #f4bf75
-color11 = #f4bf75
+color11 = #fff2a5
 
 # blue
 color4  = #6a9fb5
-color12 = #6a9fb5
+color12 = #9bd0e7
 
 # magenta
 color5  = #aa759f
-color13 = #aa759f
+color13 = #dca4d0
 
 # cyan
 color6  = #75b5aa
-color14 = #75b5aa
+color14 = #a6e7dc
 
 # white
 color7  = #d0d0d0
