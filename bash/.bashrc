@@ -36,48 +36,80 @@ export GIT_PS1_SHOWUPSTREAM=auto
 export GIT_PS1_STATESEPARATOR=
 export GIT_PS1_SHOWCOLORHINTS=1
 
+function __color()
+{
+    local COLOR='\e['
+    case "$2" in
+        bold)      COLOR+='1'  ;;
+        dim)       COLOR+='2'  ;;
+        italic)    COLOR+='3'  ;;
+        underline) COLOR+='4'  ;;
+        blink)     COLOR+='5'  ;;
+        blinkfast) COLOR+='6'  ;;
+        invert)    COLOR+='7'  ;;
+        hidden)    COLOR+='8'  ;;
+        strike)    COLOR+='9'  ;;
+        overline)  COLOR+='53' ;;
+        normal)    COLOR+='0'  ;;
+        # Possible to combine. E.g. "5;9"
+        *)         COLOR+="$2" ;;
+    esac
+    COLOR+=';'
+    case "$1" in
+        black)        COLOR+='30' ;;
+        red)          COLOR+='31' ;;
+        green)        COLOR+='32' ;;
+        yellow)       COLOR+='33' ;;
+        blue)         COLOR+='34' ;;
+        magenta)      COLOR+='35' ;;
+        cyan)         COLOR+='36' ;;
+        white)        COLOR+='37' ;;
+        lightblack)   COLOR+='90' ;;
+        lightred)     COLOR+='91' ;;
+        lightgreen)   COLOR+='92' ;;
+        lightyellow)  COLOR+='93' ;;
+        lightblue)    COLOR+='94' ;;
+        lightmagenta) COLOR+='95' ;;
+        lightcyan)    COLOR+='96' ;;
+        lightwhite)   COLOR+='97' ;;
+        none)         COLOR+='0'  ;;
+        *)            COLOR+="$1" ;;
+    esac
+    COLOR+='m'
+    echo -e $COLOR
+}
+
 function __set_bash_prompt()
 {
     local exit="$?" # Save the exit status of the last command
 
-    # Wrap the colour codes between \[ and \], so that
+    # Wrap the color codes between \[ and \], so that
     # bash counts the correct number of characters for line wrapping:
-    local Red='\[\e[0;31m\]'; local BRed='\[\e[1;31m\]'
-    local Gre='\[\e[0;32m\]'; local BGre='\[\e[1;32m\]'
-    local Yel='\[\e[0;33m\]'; local BYel='\[\e[1;33m\]'
-    local Blu='\[\e[0;34m\]'; local BBlu='\[\e[1;34m\]'
-    local Mag='\[\e[0;35m\]'; local BMag='\[\e[1;35m\]'
-    local Cya='\[\e[0;36m\]'; local BCya='\[\e[1;36m\]'
-    local Whi='\[\e[0;37m\]'; local BWhi='\[\e[1;37m\]'
-    local None='\[\e[0m\]' # Return to default colour
-
-    local PreGitPS1="[\u@\h $BBlu\W$None"
+    local PreGitPS1="\[$(__color none)\][\u@\h \[$(__color blue bold)\]\W\[$(__color none)\]"
     local PostGitPS1+=']'
     if [[ ! -z "$VIRTUAL_ENV" ]]; then
-        PostGitPS1+="$Yel(ℙ "
+        PostGitPS1+="\[$(__color yellow)\](ℙ "
         PostGitPS1+=$(basename $VIRTUAL_ENV)
-        PostGitPS1+=")$None"
+        PostGitPS1+=")\[$(__color none)\]"
     fi
-    # if which kubectl &>/dev/null && kubectl config current-context &>/dev/null; then
     if which kubectl &>/dev/null; then
         local KUBE_CONTEXT=$(cat ~/.kube/config \
                                  | grep current-context \
                                  | sed -e 's/current-context: //' -e 's/"//g')
         if [[ ! -z "$KUBE_CONTEXT" ]]; then
-            PostGitPS1+="$Blu("
-            # PostGitPS1+="⎈$(kubectl config current-context)"
+            PostGitPS1+="\[$(__color blue)\]("
             PostGitPS1+="⎈${KUBE_CONTEXT}"
-            PostGitPS1+=")$None"
+            PostGitPS1+=")\[$(__color none)\]"
         fi
     fi
     if which gcloud &>/dev/null; then
         local GCLOUD_CONF=$(cat ~/.config/gcloud/active_config)
         if [[ "$GCLOUD_CONF" != "dummy" ]]; then
-            PostGitPS1+="$Mag(𝔾 $GCLOUD_CONF)$None"
+            PostGitPS1+="\[$(__color magenta)\](𝔾 $GCLOUD_CONF)\[$(__color none)\]"
         fi
     fi
     if [[ $exit != 0 ]]; then
-        PostGitPS1+="$Red[$exit]$None"
+        PostGitPS1+="\[$(__color red)\][$exit]\[$(__color none)\]"
     fi
     PostGitPS1+='$ '
 
@@ -108,6 +140,13 @@ fi
 
 # Disable terminal suspend/resume
 stty -ixon
+
+# History
+shopt -s histappend
+HISTCONTROL=ignorespace:ignoredups
+HISTSIZE=-1
+HISTFILESIZE=-1
+HISTTIMEFORMAT="$(__color green)%F $(__color yellow)%T$(__color none): "
 
 test -s ~/.alias && . ~/.alias ||:
 
