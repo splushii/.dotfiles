@@ -37,11 +37,15 @@
 ;; (setq select-enable-clipboard t)
 ;; (setq select-enable-primary t)
 
-;; 80 col marker
+;; Whitespace styles and 80 col marker
 (setq-default
  whitespace-line-column 80
- whitespace-style '(face lines-tail))
+ whitespace-style '(face lines-tail trailing tabs))
 (add-hook 'prog-mode-hook #'whitespace-mode)
+
+;; Magit
+(setq-default
+ magit-diff-highlight-indentation '((".*" . tabs)))
 
 ;; Transpose lines
 (defun move-line-up ()
@@ -100,7 +104,6 @@
 	       "https://melpa.org/packages/"))
 (package-initialize)
 
-;; Show trailing whitespace
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -115,7 +118,6 @@
  '(package-selected-packages
    (quote
     (terraform-mode go-mode docker-tramp lxd-tramp kotlin-mode vcl-mode pkgbuild-mode fill-column-indicator multiple-cursors toml-mode yaml-mode web-mode rjsx-mode markdown-mode magit jinja2-mode groovy-mode dockerfile-mode)))
- '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
