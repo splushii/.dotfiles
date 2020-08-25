@@ -96,7 +96,7 @@ function __set_bash_prompt()
         local KUBE_CONTEXT=$(cat ~/.kube/config \
                                  | grep current-context \
                                  | sed -e 's/current-context: //' -e 's/"//g')
-        if [[ ! -z "$KUBE_CONTEXT" ]]; then
+        if [[ ! -z "$KUBE_CONTEXT" ]] && [[ ! "$KUBE_CONTEXT" = "''" ]]; then
             PostGitPS1+="\[$(__color blue)\]("
             PostGitPS1+="⎈${KUBE_CONTEXT}"
             PostGitPS1+=")\[$(__color none)\]"
