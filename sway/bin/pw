@@ -6,12 +6,12 @@ fi
 echo "Trying to get password..."
 if [ ! -z "$2" ] && [ "$2" == "X11" ]; then
     PASSWORD_STORE_CLIP_TIME="${PASSWORD_STORE_CLIP_TIME:-5}"
-    pass $1 | xclip -in -rmlastnl -selection primary
+    pass $1 | head -n1 | xclip -in -rmlastnl -selection primary
     echo "pass $1 in X clipboard for ${PASSWORD_STORE_CLIP_TIME}s"
     sleep ${PASSWORD_STORE_CLIP_TIME}
     echo | xclip -in -rmlastnl -selection primary
 else
-    PASSWORD=$(pass $1)
+    PASSWORD=$(pass $1 | head -n1)
     echo "pass $1 in wayland clipboard once."
     echo "${PASSWORD}" | wl-copy --paste-once -f
 fi
