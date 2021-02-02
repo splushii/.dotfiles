@@ -88,7 +88,7 @@ function __set_bash_prompt()
     local PreGitPS1="\[$(__color none)\][\u@\h \[$(__color blue bold)\]\W\[$(__color none)\]"
     local PostGitPS1+=']'
     if [[ ! -z "$VIRTUAL_ENV" ]]; then
-        PostGitPS1+="\[$(__color yellow)\](ℙ "
+        PostGitPS1+="\[$(__color yellow)\]( "
         PostGitPS1+=$(basename $VIRTUAL_ENV)
         PostGitPS1+=")\[$(__color none)\]"
     fi
@@ -105,7 +105,7 @@ function __set_bash_prompt()
     if which gcloud &>/dev/null; then
         local GCLOUD_CONF=$(cat ~/.config/gcloud/active_config)
         if [[ "$GCLOUD_CONF" != "dummy" ]]; then
-            PostGitPS1+="\[$(__color magenta)\](𝔾 $GCLOUD_CONF)\[$(__color none)\]"
+            PostGitPS1+="\[$(__color magenta)\]( $GCLOUD_CONF)\[$(__color none)\]"
         fi
     fi
     if [[ $exit != 0 ]]; then
@@ -113,7 +113,7 @@ function __set_bash_prompt()
     fi
     PostGitPS1+='$ '
 
-    __git_ps1 "$PreGitPS1" "$PostGitPS1" '(%s)'
+    __git_ps1 "$PreGitPS1" "$PostGitPS1" '(\[$(__color green)\] %s)'
 }
 function __pre_command()
 {
