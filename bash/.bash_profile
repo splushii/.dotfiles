@@ -7,6 +7,7 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ]; then
     elif [ "$XDG_VTNR" -eq 1 ]; then
         # Set wayland stuff
         export XDG_SESSION_TYPE=wayland
+        export XDG_CURRENT_DESKTOP=sway
         export MOZ_ENABLE_WAYLAND=1
         export QT_QPA_PLATFORM=wayland-egl
         export QT_WAYLAND_FORCE_DPI=physical
