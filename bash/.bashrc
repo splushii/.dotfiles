@@ -135,7 +135,7 @@ PROMPT_COMMAND=__post_command
 # virtualenvwrapper
 if [ -e '/usr/bin/virtualenvwrapper.sh' ]; then
     export WORKON_HOME=~/envs
-    source /usr/bin/virtualenvwrapper.sh
+    . /usr/bin/virtualenvwrapper.sh
 fi
 
 # Disable terminal suspend/resume
