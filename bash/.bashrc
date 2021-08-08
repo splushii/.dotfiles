@@ -152,7 +152,8 @@ test -s ~/.alias && . ~/.alias ||:
 
 # Completion
 hash kubectl 2>/dev/null && source <(kubectl completion bash) ||:
-hash helm  2>/dev/null && source <(helm completion bash) ||:
+hash helm 2>/dev/null && source <(helm completion bash) ||:
+hash flux 2>/dev/null && source <(flux completion bash) ||:
 # added by travis gem
 [ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh ||:
 
