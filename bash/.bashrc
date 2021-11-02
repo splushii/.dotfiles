@@ -23,12 +23,7 @@ export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export PASSWORD_STORE_GENERATED_LENGTH=128
 export PASSWORD_STORE_CHARACTER_SET='[:alnum:]'
 
-# completion
-. /usr/share/bash-completion/completions/pass
-complete -o filenames -F _pass pw
-
 # prompt
-. /usr/share/git/completion/git-prompt.sh
 export GIT_PS1_SHOWDIRTYSTATE=y
 export GIT_PS1_SHOWSTASHSTATE=y
 export GIT_PS1_SHOWUNTRACKEDFILES=y
@@ -92,7 +87,20 @@ function __set_bash_prompt()
         PostGitPS1+=$(basename $VIRTUAL_ENV)
         PostGitPS1+=")\[$(__color none)\]"
     fi
-    if which kubectl &>/dev/null; then
+    if hash gcloud &>/dev/null; then
+        local GCLOUD_CONF=$(cat ~/.config/gcloud/active_config)
+        if [[ "$GCLOUD_CONF" != "dummy" ]]; then
+            PostGitPS1+="\[$(__color magenta)\]( $GCLOUD_CONF)\[$(__color none)\]"
+        fi
+    fi
+    if hash terraform &>/dev/null; then
+        if [[ ! -z "$TF_DATA_DIR" ]]; then
+            PostGitPS1+="\[$(__color white)\]("
+            PostGitPS1+="𝒯𝐹${TF_DATA_DIR}"
+            PostGitPS1+=")\[$(__color none)\]"
+        fi
+    fi
+    if hash kubectl &>/dev/null; then
         local KUBE_CONTEXT=$(cat ~/.kube/config \
                                  | grep current-context \
                                  | sed -e 's/current-context: //' -e 's/"//g')
@@ -100,12 +108,6 @@ function __set_bash_prompt()
             PostGitPS1+="\[$(__color blue)\]("
             PostGitPS1+="⎈${KUBE_CONTEXT}"
             PostGitPS1+=")\[$(__color none)\]"
-        fi
-    fi
-    if which gcloud &>/dev/null; then
-        local GCLOUD_CONF=$(cat ~/.config/gcloud/active_config)
-        if [[ "$GCLOUD_CONF" != "dummy" ]]; then
-            PostGitPS1+="\[$(__color magenta)\]( $GCLOUD_CONF)\[$(__color none)\]"
         fi
     fi
     if [[ $exit != 0 ]]; then
@@ -151,11 +153,18 @@ HISTTIMEFORMAT="$(__color green)%F $(__color yellow)%T$(__color none): "
 test -s ~/.alias && . ~/.alias ||:
 
 # Completion
-hash kubectl 2>/dev/null && source <(kubectl completion bash) ||:
-hash helm 2>/dev/null && source <(helm completion bash) ||:
-hash flux 2>/dev/null && source <(flux completion bash) ||:
-# added by travis gem
-[ -f /home/c/.travis/travis.sh ] && source /home/c/.travis/travis.sh ||:
+hash git && . /usr/share/git/completion/git-prompt.sh ||:
+hash pass &>/dev/null \
+    && . /usr/share/bash-completion/completions/pass \
+    && complete -o filenames -F _pass pw ||:
+hash kubectl &>/dev/null && . <(kubectl completion bash) ||:
+hash helm &>/dev/null && . <(helm completion bash) ||:
+hash flux &>/dev/null && . <(flux completion bash) ||:
+hash gh &>/dev/null && . <(gh completion -s bash) ||:
+hash terraform &>/dev/null && complete -C /usr/bin/terraform terraform
+
+# Travis
+[[ -f ~/.travis/travis.sh ]] && . ~/.travis/travis.sh ||:
 
 [[ -f ~/.workrc ]] && . ~/.workrc ||:
 
