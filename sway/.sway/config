@@ -17,6 +17,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec termite
 bindsym $mod+$mod2+Return exec termite -d $(~/bin/sway_focused_cwd.sh)
+bindsym $mod+Backspace exec GDK_BACKEND=x11 termite
 
 # kill focused window
 bindsym $mod+$mod2+q kill
@@ -166,6 +167,13 @@ input * {
 
 ### Output
 output eDP-1 scale 2
+
+### Set systemd ENV (for xdg-desktop-portal, pipewire, etc.)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+exec systemctl --user start pipewire-media-session
 
 ### Notification daemon
 exec mako 2>&1 >/tmp/mako.log
